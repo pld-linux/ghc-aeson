@@ -22,6 +22,7 @@ BuildRequires:	ghc-blaze-builder >= 0.2.1.4
 BuildRequires:	ghc-bytestring
 BuildRequires:	ghc-containers
 BuildRequires:	ghc-deepseq
+BuildRequires:	ghc-dlist
 BuildRequires:	ghc-hashable >= 1.1.2.0
 BuildRequires:	ghc-mtl
 BuildRequires:	ghc-old-locale
@@ -40,6 +41,7 @@ BuildRequires:	ghc-blaze-builder-prof >= 0.2.1.4
 BuildRequires:	ghc-bytestring-prof
 BuildRequires:	ghc-containers-prof
 BuildRequires:	ghc-deepseq-prof
+BuildRequires:	ghc-dlist-prof
 BuildRequires:	ghc-hashable-prof >= 1.1.2.0
 BuildRequires:	ghc-mtl-prof
 BuildRequires:	ghc-old-locale-prof
@@ -60,6 +62,7 @@ Requires:	ghc-blaze-builder >= 0.2.1.4
 Requires:	ghc-bytestring
 Requires:	ghc-containers
 Requires:	ghc-deepseq
+Requires:	ghc-dlist
 Requires:	ghc-hashable >= 1.1.2.0
 Requires:	ghc-mtl
 Requires:	ghc-old-locale
@@ -97,6 +100,7 @@ Requires:	ghc-blaze-builder-prof >= 0.2.1.4
 Requires:	ghc-bytestring-prof
 Requires:	ghc-containers-prof
 Requires:	ghc-deepseq-prof
+Requires:	ghc-dlist-prof
 Requires:	ghc-hashable-prof >= 1.1.2.0
 Requires:	ghc-mtl-prof
 Requires:	ghc-old-locale-prof
