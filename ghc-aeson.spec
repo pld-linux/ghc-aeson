@@ -6,18 +6,18 @@
 Summary:	Fast JSON parsing and encoding
 Summary(pl.UTF-8):	Szybkie analizowanie i kodowanie JSON
 Name:		ghc-%{pkgname}
-Version:	0.6.2.1
+Version:	1.4.7.1
 Release:	1
 License:	BSD
 Group:		Development/Languages
 #Source0Download: http://hackage.haskell.org/package/aeson
 Source0:	http://hackage.haskell.org/package/%{pkgname}-%{version}/%{pkgname}-%{version}.tar.gz
-# Source0-md5:	3e06429d5e10812c9d8b8f184455e9a1
+# Source0-md5:	b83f55bb279c0659228931816c7a3af1
 URL:		http://hackage.haskell.org/package/aeson
 BuildRequires:	ghc >= 6.12.3
 BuildRequires:	ghc-attoparsec >= 0.8.6.1
 BuildRequires:	ghc-base >= 4
-BuildRequires:	ghc-base < 5
+BuildRequires:	ghc-base-compat-batteries >= 0.10.0
 BuildRequires:	ghc-blaze-builder >= 0.2.1.4
 BuildRequires:	ghc-bytestring
 BuildRequires:	ghc-containers
@@ -25,18 +25,19 @@ BuildRequires:	ghc-deepseq
 BuildRequires:	ghc-dlist
 BuildRequires:	ghc-hashable >= 1.1.2.0
 BuildRequires:	ghc-mtl
-BuildRequires:	ghc-old-locale
 BuildRequires:	ghc-syb
 BuildRequires:	ghc-template-haskell >= 2.4
 BuildRequires:	ghc-text >= 0.11.1.0
 BuildRequires:	ghc-time
+BuildRequires:	ghc-time-compat >= 1.9.2.2
 BuildRequires:	ghc-unordered-containers >= 0.1.3.0
+BuildRequires:	ghc-uuid-types >= 1.0.3
 BuildRequires:	ghc-vector >= 0.7.1
 %if %{with prof}
 BuildRequires:	ghc-prof >= 6.12.3
 BuildRequires:	ghc-attoparsec-prof >= 0.8.6.1
+BuildRequires:	ghc-base-compat-batteries-prof >= 0.10.0
 BuildRequires:	ghc-base-prof >= 4
-BuildRequires:	ghc-base-prof < 5
 BuildRequires:	ghc-blaze-builder-prof >= 0.2.1.4
 BuildRequires:	ghc-bytestring-prof
 BuildRequires:	ghc-containers-prof
@@ -44,12 +45,13 @@ BuildRequires:	ghc-deepseq-prof
 BuildRequires:	ghc-dlist-prof
 BuildRequires:	ghc-hashable-prof >= 1.1.2.0
 BuildRequires:	ghc-mtl-prof
-BuildRequires:	ghc-old-locale-prof
 BuildRequires:	ghc-syb-prof
 BuildRequires:	ghc-template-haskell-prof >= 2.4
 BuildRequires:	ghc-text-prof >= 0.11.1.0
+BuildRequires:	ghc-time-compat-prof >= 1.9.2.2
 BuildRequires:	ghc-time-prof
 BuildRequires:	ghc-unordered-containers-prof >= 0.1.3.0
+BuildRequires:	ghc-uuid-types-prof >= 1.0.3
 BuildRequires:	ghc-vector-prof >= 0.7.1
 %endif
 BuildRequires:	rpmbuild(macros) >= 1.608
@@ -57,7 +59,7 @@ Requires(post,postun):	/usr/bin/ghc-pkg
 %requires_eq	ghc
 Requires:	ghc-attoparsec >= 0.8.6.1
 Requires:	ghc-base >= 4
-Requires:	ghc-base < 5
+Requires:	ghc-base-compat-batteries >= 0.10.0
 Requires:	ghc-blaze-builder >= 0.2.1.4
 Requires:	ghc-bytestring
 Requires:	ghc-containers
@@ -65,12 +67,13 @@ Requires:	ghc-deepseq
 Requires:	ghc-dlist
 Requires:	ghc-hashable >= 1.1.2.0
 Requires:	ghc-mtl
-Requires:	ghc-old-locale
 Requires:	ghc-syb
 Requires:	ghc-template-haskell >= 2.4
 Requires:	ghc-text >= 0.11.1.0
 Requires:	ghc-time
+Requires:	ghc-time-compat >= 1.9.2.2
 Requires:	ghc-unordered-containers >= 0.1.3.0
+Requires:	ghc-uuid-types >= 1.0.3
 Requires:	ghc-vector >= 0.7.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -94,8 +97,8 @@ Summary(pl.UTF-8):	Biblioteka profilująca %{pkgname} dla GHC
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	ghc-attoparsec-prof >= 0.8.6.1
+Requires:	ghc-base-compat-batteries-prof >= 0.10.0
 Requires:	ghc-base-prof >= 4
-Requires:	ghc-base-prof < 5
 Requires:	ghc-blaze-builder-prof >= 0.2.1.4
 Requires:	ghc-bytestring-prof
 Requires:	ghc-containers-prof
@@ -103,12 +106,13 @@ Requires:	ghc-deepseq-prof
 Requires:	ghc-dlist-prof
 Requires:	ghc-hashable-prof >= 1.1.2.0
 Requires:	ghc-mtl-prof
-Requires:	ghc-old-locale-prof
 Requires:	ghc-syb-prof
 Requires:	ghc-template-haskell-prof >= 2.4
 Requires:	ghc-text-prof >= 0.11.1.0
+Requires:	ghc-time-compat-prof >= 1.9.2.2
 Requires:	ghc-time-prof
 Requires:	ghc-unordered-containers-prof >= 0.1.3.0
+Requires:	ghc-uuid-types-prof >= 1.0.3
 Requires:	ghc-vector-prof >= 0.7.1
 
 %description prof
@@ -172,25 +176,50 @@ rm -rf $RPM_BUILD_ROOT
 %doc LICENSE README.markdown
 %{_libdir}/%{ghcdir}/package.conf.d/%{pkgname}.conf
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/HSaeson-%{version}.o
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSaeson-%{version}.a
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSaeson-%{version}-*.so
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSaeson-%{version}-*.a
+%exclude %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSaeson-%{version}-*_p.a
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/*.dyn_hi
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/*.dyn_hi
+%dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/Encoding
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/Encoding/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/Encoding/*.dyn_hi
+%dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/Internal
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/Internal/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/Internal/*.dyn_hi
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/Parser
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/Parser/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/Parser/*.dyn_hi
+%dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/QQ
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/QQ/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/QQ/*.dyn_hi
 %dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/Types
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/Types/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/Types/*.dyn_hi
+%dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Attoparsec
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Attoparsec/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Attoparsec/*.dyn_hi
+%dir %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Attoparsec/Time
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Attoparsec/Time/*.hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Attoparsec/Time/*.dyn_hi
 
 %if %{with prof}
 %files prof
 %defattr(644,root,root,755)
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSaeson-%{version}_p.a
-%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson.p_hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/libHSaeson-%{version}-*_p.a
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/*.p_hi
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/*.p_hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/Encoding/*.p_hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/Internal/*.p_hi
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/Parser/*.p_hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/QQ/*.p_hi
 %{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Aeson/Types/*.p_hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Attoparsec/*.p_hi
+%{_libdir}/%{ghcdir}/%{pkgname}-%{version}/Data/Attoparsec/Time/*.p_hi
 %endif
 
 %files doc
