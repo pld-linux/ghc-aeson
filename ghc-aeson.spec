@@ -7,7 +7,7 @@ Summary:	Fast JSON parsing and encoding
 Summary(pl.UTF-8):	Szybkie analizowanie i kodowanie JSON
 Name:		ghc-%{pkgname}
 Version:	1.4.7.1
-Release:	1
+Release:	2
 License:	BSD
 Group:		Development/Languages
 #Source0Download: http://hackage.haskell.org/package/aeson
