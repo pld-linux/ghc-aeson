@@ -14,67 +14,73 @@ Group:		Development/Languages
 Source0:	http://hackage.haskell.org/package/%{pkgname}-%{version}/%{pkgname}-%{version}.tar.gz
 # Source0-md5:	b83f55bb279c0659228931816c7a3af1
 URL:		http://hackage.haskell.org/package/aeson
-BuildRequires:	ghc >= 6.12.3
-BuildRequires:	ghc-attoparsec >= 0.8.6.1
-BuildRequires:	ghc-base >= 4
+BuildRequires:	ghc >= 8.6
+BuildRequires:	ghc-attoparsec >= 0.13.2.2
+BuildRequires:	ghc-base >= 4.7.0.0
 BuildRequires:	ghc-base-compat-batteries >= 0.10.0
-BuildRequires:	ghc-blaze-builder >= 0.2.1.4
-BuildRequires:	ghc-bytestring
-BuildRequires:	ghc-containers
-BuildRequires:	ghc-deepseq
-BuildRequires:	ghc-dlist
-BuildRequires:	ghc-hashable >= 1.1.2.0
-BuildRequires:	ghc-mtl
-BuildRequires:	ghc-syb
-BuildRequires:	ghc-template-haskell >= 2.4
-BuildRequires:	ghc-text >= 0.11.1.0
-BuildRequires:	ghc-time
+BuildRequires:	ghc-bytestring >= 0.10.4.0
+BuildRequires:	ghc-containers >= 0.5.5.1
+BuildRequires:	ghc-deepseq >= 1.3.0.0
+BuildRequires:	ghc-dlist >= 0.8.0.4
+BuildRequires:	ghc-ghc-prim >= 0.2
+BuildRequires:	ghc-hashable >= 1.2.7.0
+BuildRequires:	ghc-primitive >= 0.6.3.0
+BuildRequires:	ghc-scientific >= 0.3.6.2
+BuildRequires:	ghc-tagged >= 0.8.5
+BuildRequires:	ghc-template-haskell >= 2.9.0.0
+BuildRequires:	ghc-text >= 1.2.3.0
+BuildRequires:	ghc-th-abstraction >= 0.2.8.0
+BuildRequires:	ghc-time >= 1.4
 BuildRequires:	ghc-time-compat >= 1.9.2.2
-BuildRequires:	ghc-unordered-containers >= 0.1.3.0
+BuildRequires:	ghc-unordered-containers >= 0.2.8.0
 BuildRequires:	ghc-uuid-types >= 1.0.3
-BuildRequires:	ghc-vector >= 0.7.1
+BuildRequires:	ghc-vector >= 0.12.0.1
 %if %{with prof}
 BuildRequires:	ghc-prof >= 6.12.3
-BuildRequires:	ghc-attoparsec-prof >= 0.8.6.1
+BuildRequires:	ghc-attoparsec-prof >= 0.13.2.2
+BuildRequires:	ghc-base-prof >= 4.7.0.0
 BuildRequires:	ghc-base-compat-batteries-prof >= 0.10.0
-BuildRequires:	ghc-base-prof >= 4
-BuildRequires:	ghc-blaze-builder-prof >= 0.2.1.4
-BuildRequires:	ghc-bytestring-prof
-BuildRequires:	ghc-containers-prof
-BuildRequires:	ghc-deepseq-prof
-BuildRequires:	ghc-dlist-prof
-BuildRequires:	ghc-hashable-prof >= 1.1.2.0
-BuildRequires:	ghc-mtl-prof
-BuildRequires:	ghc-syb-prof
-BuildRequires:	ghc-template-haskell-prof >= 2.4
-BuildRequires:	ghc-text-prof >= 0.11.1.0
+BuildRequires:	ghc-bytestring-prof >= 0.10.4.0
+BuildRequires:	ghc-containers-prof >= 0.5.5.1
+BuildRequires:	ghc-deepseq-prof >= 1.3.0.0
+BuildRequires:	ghc-dlist-prof >= 0.8.0.4
+BuildRequires:	ghc-ghc-prim-prof >= 0.2
+BuildRequires:	ghc-hashable-prof >= 1.2.7.0
+BuildRequires:	ghc-primitive-prof >= 0.6.3.0
+BuildRequires:	ghc-scientific-prof >= 0.3.6.2
+BuildRequires:	ghc-tagged-prof >= 0.8.5
+BuildRequires:	ghc-template-haskell-prof >= 2.9.0.0
+BuildRequires:	ghc-text-prof >= 1.2.3.0
+BuildRequires:	ghc-th-abstraction-prof >= 0.2.8.0
+BuildRequires:	ghc-time-prof >= 1.4
 BuildRequires:	ghc-time-compat-prof >= 1.9.2.2
-BuildRequires:	ghc-time-prof
-BuildRequires:	ghc-unordered-containers-prof >= 0.1.3.0
+BuildRequires:	ghc-unordered-containers-prof >= 0.2.8.0
 BuildRequires:	ghc-uuid-types-prof >= 1.0.3
-BuildRequires:	ghc-vector-prof >= 0.7.1
+BuildRequires:	ghc-vector-prof >= 0.12.0.1
 %endif
 BuildRequires:	rpmbuild(macros) >= 1.608
 Requires(post,postun):	/usr/bin/ghc-pkg
 %requires_eq	ghc
-Requires:	ghc-attoparsec >= 0.8.6.1
-Requires:	ghc-base >= 4
+Requires:	ghc-attoparsec >= 0.13.2.2
+Requires:	ghc-base >= 4.7.0.0
 Requires:	ghc-base-compat-batteries >= 0.10.0
-Requires:	ghc-blaze-builder >= 0.2.1.4
-Requires:	ghc-bytestring
-Requires:	ghc-containers
-Requires:	ghc-deepseq
-Requires:	ghc-dlist
-Requires:	ghc-hashable >= 1.1.2.0
-Requires:	ghc-mtl
-Requires:	ghc-syb
-Requires:	ghc-template-haskell >= 2.4
-Requires:	ghc-text >= 0.11.1.0
-Requires:	ghc-time
+Requires:	ghc-bytestring >= 0.10.4.0
+Requires:	ghc-containers >= 0.5.5.1
+Requires:	ghc-deepseq >= 1.3.0.0
+Requires:	ghc-dlist >= 0.8.0.4
+Requires:	ghc-ghc-prim >= 0.2
+Requires:	ghc-hashable >= 1.2.7.0
+Requires:	ghc-primitive >= 0.6.3.0
+Requires:	ghc-scientific >= 0.3.6.2
+Requires:	ghc-tagged >= 0.8.5
+Requires:	ghc-template-haskell >= 2.9.0.0
+Requires:	ghc-text >= 1.2.3.0
+Requires:	ghc-th-abstraction >= 0.2.8.0
+Requires:	ghc-time >= 1.4
 Requires:	ghc-time-compat >= 1.9.2.2
-Requires:	ghc-unordered-containers >= 0.1.3.0
+Requires:	ghc-unordered-containers >= 0.2.8.0
 Requires:	ghc-uuid-types >= 1.0.3
-Requires:	ghc-vector >= 0.7.1
+Requires:	ghc-vector >= 0.12.0.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # debuginfo is not useful for ghc
@@ -96,24 +102,26 @@ Summary:	Profiling %{pkgname} library for GHC
 Summary(pl.UTF-8):	Biblioteka profilująca %{pkgname} dla GHC
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	ghc-attoparsec-prof >= 0.8.6.1
+Requires:	ghc-attoparsec-prof >= 0.13.2.2
+Requires:	ghc-base-prof >= 4.7.0.0
 Requires:	ghc-base-compat-batteries-prof >= 0.10.0
-Requires:	ghc-base-prof >= 4
-Requires:	ghc-blaze-builder-prof >= 0.2.1.4
-Requires:	ghc-bytestring-prof
-Requires:	ghc-containers-prof
-Requires:	ghc-deepseq-prof
-Requires:	ghc-dlist-prof
-Requires:	ghc-hashable-prof >= 1.1.2.0
-Requires:	ghc-mtl-prof
-Requires:	ghc-syb-prof
-Requires:	ghc-template-haskell-prof >= 2.4
-Requires:	ghc-text-prof >= 0.11.1.0
+Requires:	ghc-bytestring-prof >= 0.10.4.0
+Requires:	ghc-containers-prof >= 0.5.5.1
+Requires:	ghc-deepseq-prof >= 1.3.0.0
+Requires:	ghc-dlist-prof >= 0.8.0.4
+Requires:	ghc-ghc-prim-prof >= 0.2
+Requires:	ghc-hashable-prof >= 1.2.7.0
+Requires:	ghc-primitive-prof >= 0.6.3.0
+Requires:	ghc-scientific-prof >= 0.3.6.2
+Requires:	ghc-tagged-prof >= 0.8.5
+Requires:	ghc-template-haskell-prof >= 2.9.0.0
+Requires:	ghc-text-prof >= 1.2.3.0
+Requires:	ghc-th-abstraction-prof >= 0.2.8.0
+Requires:	ghc-time-prof >= 1.4
 Requires:	ghc-time-compat-prof >= 1.9.2.2
-Requires:	ghc-time-prof
-Requires:	ghc-unordered-containers-prof >= 0.1.3.0
+Requires:	ghc-unordered-containers-prof >= 0.2.8.0
 Requires:	ghc-uuid-types-prof >= 1.0.3
-Requires:	ghc-vector-prof >= 0.7.1
+Requires:	ghc-vector-prof >= 0.12.0.1
 
 %description prof
 Profiling %{pkgname} library for GHC. Should be installed when
